@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fée Créas</title>
+    <!-- Inclure Tailwind CSS directement dans le HTML via le lien CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #e5c8ed;">
+    <!-- Div pour le contenu principal avec la couleur de fond -->
+    <div class="min-h-screen flex flex-col justify-center items-center">
+        <!-- Texte "Fée Créas" avec l'animation -->
+        <h1 class="text-3xl font-bold mb-80 relative">
+            <span class="animate-slide-in-right absolute right-full mr-1" style="color: #4156B6">Fée</span>
+            <span class="animate-slide-in-left absolute left-full ml-1" style="color: #788ada" >Créas</span>
+        </h1>
+        
+        <!-- Logo avec l'animation -->
+        <div class="fixed bottom-10 left-1/2 transform -translate-x-1/2">
+            <img src="../public/logo_fee_creas.png" alt="logo fée créa" class="animate-slide-up-and-fade">
+        </div>
+    </div>
+
+    <style>
+        /* Animation pour faire monter le logo du bas vers le haut */
+        @keyframes slideUpAndFade {
+            0% {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation pour faire arriver le texte de la droite */
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Animation pour faire arriver le texte de la gauche */
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Classe pour appliquer l'animation au texte "Fée" et "Créas" */
+        .animate-color-change {
+            animation: colorChange 3s ease-in-out;
+        }
+
+        /* Classe pour appliquer l'animation au texte "Fée" */
+        .animate-slide-in-right {
+            /* Appliquer l'animation de droite à gauche */
+            animation: slideInRight 3s ease-out;
+        }
+
+        /* Classe pour appliquer l'animation au texte "Créas" */
+        .animate-slide-in-left {
+            /* Appliquer l'animation de gauche à droite */
+            animation: slideInLeft 3s ease-out;
+        }
+
+        /* Classe pour appliquer l'animation au logo */
+        .animate-slide-up-and-fade {
+            /* Appliquer l'animation pour faire monter le logo du bas vers le haut */
+            animation: slideUpAndFade 1.5s ease-out;
+        }
+    </style>
+    <!-- Styles pour les pétales -->
+    <style>
+        .petal {
+            position: fixed;
+            width: 25px;
+            height: 25px;
+            background-color: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-50px) scale(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) scale(1);
+            }
+        }
+    </style>
+
+    <!-- Script pour ajouter les pétales au curseur de la souris -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('mousemove', function (event) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.left = (event.pageX - 4) + 'px';
+                petal.style.top = (event.pageY - 4) + 'px';
+                document.body.appendChild(petal);
+
+                // Supprimer le pétale après 5 secondes pour éviter une accumulation excessive
+                setTimeout(function () {
+                    document.body.removeChild(petal);
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
